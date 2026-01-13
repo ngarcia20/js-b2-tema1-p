@@ -3,7 +3,30 @@
 // Enunciado disponible en u4e1.md / Enunciat disponible a u4e1.md
 
 //Escribe aquí tu solución / escriviu aquí la vostra solució:
+async function countDown(amount, stepCallback) {
+    if (typeof stepCallback !== 'function') {
+        throw new Error("ERROR. Es obligatorio el paso de un callback como segundo parámetro.");
+    }
 
+    return new Promise((resolve, reject) => {
+        if (amount <= 0) {
+            reject(new Error("ERROR. La cantidad ha de ser positiva y mayor que 0."));
+            return;
+        }
+
+        let cuenta = amount;
+
+        const intervalo = setInterval(() => {
+            stepCallback(cuenta);
+            cuenta--;
+
+            if (cuenta === 0) {
+                clearInterval(intervalo);
+                resolve(true);
+            }
+        }, 100);
+    });
+}
 
 /**
 * TEST

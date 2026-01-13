@@ -3,7 +3,13 @@
 // Enunciado disponible en u1e1.md / Enunciat disponible a u1e1.md
 
 // Escribe aquí tu solución / escriviu aquí la vostra solució:
-
+function conditionalCallback(callback, param) {
+    if (!param) {
+        return false;
+    } else {
+        return callback(param);
+    }
+}
 
 /**
 * TEST
